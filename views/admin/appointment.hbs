@@ -1,0 +1,70 @@
+<section class="admin-users ml-250">
+  <div class="user-container">
+    <div id="doctor-conatiner" class="container active">
+      <div class="doctors-display">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                Image
+              </th>
+              <th>
+                Doctor Name
+              </th>
+              <th>
+                Username
+              </th>
+              <th>
+                Email
+              </th>
+              <th>
+                Specialsed
+              </th>
+              <th>
+                Sepeciality
+              </th>
+              <th>
+                Appointments
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each doctor}}
+            <tr id="{{this._id}}">
+              <td>
+                <div>
+                  <img src="/images/doctor/{{this._id}}.jpg" alt="" />
+                  <div id="{{this._id}}msg" class="img-hover" onclick="window.location = '/image-upload/{{this._id}}'">
+                    Edit
+                  </div>
+                </div>
+              </td>
+              <td>
+                {{this.name}}
+              </td>
+              <td>
+                {{this.username}}
+              </td>
+              <td>
+                {{this.email}}
+              </td>
+              <td>
+                {{this.specialised}}
+              </td>
+              <td>
+                {{this.field}}
+              </td>
+              <td>
+                <a class="edit" href="/appointment/{{this._id}}">
+                  <i class="fas fa-calendar"></i>
+                </a>
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="/javascripts/users-search.js"></script>

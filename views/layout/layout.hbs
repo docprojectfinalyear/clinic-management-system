@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{title}}</title>
+  <!--Favicon Start-->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+  <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#19b9ec">
+  <meta name="msapplication-TileColor" content="#19b9ec">
+  <meta name="theme-color" content="#19b9ec">
+  <!--End-->
+  <meta name="google-signin-client_id"
+    content="254931449650-egdl6jb9jcf9olrgurqfsebir6jjme66.apps.googleusercontent.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+    integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.9/cropper.js"
+    integrity="sha512-oqBsjjSHWqkDx4UKoU+5IUZN2nW2qDp2GFSKw9+mcFm+ZywqfBKp79nfWmGPco2wzTWuE46XpjtCjZ9tFmI12g=="
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.9/cropper.css"
+    integrity="sha512-949FvIQOibfhLTgmNws4F3DVlYz3FmCRRhJznR22hx76SKkcpZiVV5Kwo0iwK9L6BFuY+6mpdqB2+vDIGVuyHg=="
+    crossorigin="anonymous" />
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='/stylesheets/variable.css' />
+  <link rel="stylesheet" href="/stylesheets/media.css">
+  <link rel="stylesheet" href="/stylesheets/animations.css">
+</head>
+
+<body>
+  <div class="loader">
+    <div class="spinner"></div>
+  </div>
+  {{#if admin}}
+  {{> admin-header}}
+  {{> admin}}
+  {{/if}}
+  {{#if header}}
+  {{> user-header}}
+  {{/if}}
+  {{#if doctorLogged}}
+  {{> doctor-header}}
+  {{/if}}
+  {{{body}}}
+  <script>
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: '2820168098229353',
+        cookie: true,
+        xfbml: true,
+        version: 'v9.0'
+      });
+      FB.AppEvents.logPageView();
+    };
+
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous"
+    src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v9.0&appId=2820168098229353&autoLogAppEvents=1"
+    nonce="KuMhvFBo"></script>
+  <script src="/javascripts/media.js"></script>
+  <script src="/javascripts/script.js"></script>
+  <script src="/javascripts/image-cropper.js"></script>
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+  {{#if doctorLogged}}
+  <script>
+    var id = "{{doctorLogged._id}}"
+  </script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/javascripts/doctor-notification.js"></script>
+  {{/if}}
+</body>
+
+</html>

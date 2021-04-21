@@ -1,0 +1,163 @@
+<section class="dr-page ptnt ml-250">
+    <div class="tab">
+        <button id="doctor" class="active"
+            onclick="toogleTab('#doctor', '#patient', '#doctor-conatiner', '#patient-conatiner')">
+            <i class="fas fa-user-injured"></i>
+            Patients
+        </button>
+        <button id="patient" onclick="toogleTab('#patient','#doctor','#patient-conatiner','#doctor-conatiner')">
+            <i class="fas fa-user-times"></i>
+            Blocked
+        </button>
+        <hr />
+    </div>
+    <div class="search" style="display: flex; justify-content:flex-end">
+            <div class="btn-grp">
+                <input type="text" name="q" class="first" id="search" value="{{query}}" placeholder="Search....">
+                <button type="submit" class="last" id="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+    </div>
+    <div class="user-container">
+        <div id="doctor-conatiner" class="container active">
+            <div class="doctors-display" style="padding: 25px;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Email
+                            </th>
+                            <th>
+                                Contactno
+                            </th>
+                            <th>
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each notBlocked}}
+                        <tr id="{{this._id}}">
+                            <td>
+                                {{this.name}}
+                            </td>
+                            <td>
+                                {{this.email}}
+                            </td>
+                            <td>
+                                {{this.contactno}}
+                            </td>
+                            <td>
+                                <a class="edit tooltip" href="/history/{{this._id}}">
+                                    <i class="fas fa-calendar"></i>
+                                    <span class="tooltip-text">History</span>
+                                </a>
+                                <span class="delete tooltip" onclick="modalup('delete-modal','{{this._id}}')">
+                                    <i class="fas fa-user-slash"></i>
+                                    <span class="tooltip-text">Block</span>
+                                </span>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="patient-conatiner" class="container">
+            <div class="doctors-display" style="padding: 25px;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Email
+                            </th>
+                            <th>
+                                Contactno
+                            </th>
+                            <th>
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each blocked}}
+                        <tr id="{{this._id}}">
+                            <td>
+                                {{this.name}}
+                            </td>
+                            <td>
+                                {{this.email}}
+                            </td>
+                            <td>
+                                {{this.contactno}}
+                            </td>
+                            <td>
+                                <a class="edit tooltip" href="/history/{{this._id}}">
+                                    <i class="fas fa-calendar"></i>
+                                    <span class="tooltip-text">History</span>
+                                </a>
+                                <span class="yes tooltip" onclick="modalup('unblock-modal','{{this._id}}')">
+                                    <i class="fas fa-user-check"></i>
+                                    <span class="tooltip-text">Unblock</span>
+                                </span>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal delete-modal">
+    <h1>
+        Do you Want Block ?
+    </h1>
+    <button class="yes" onclick="blockUser()">
+        Yes
+    </button>
+    <button class="no" onclick="document.querySelector('.delete-modal').classList.toggle('active')">
+        No
+    </button>
+</div>
+<div class="modal unblock-modal">
+    <h1>
+        Do you Want Unblock ?
+    </h1>
+    <button class="yes" onclick="unblock()">
+        Yes
+    </button>
+    <button class="no" onclick="document.querySelector('.unblock-modal').classList.toggle('active')">
+        No
+    </button>
+</div>
+<div class="modal delete-sucess-modal">
+    <h1>
+        Pateint Blocked
+    </h1>
+    <button class="normal" onclick="document.querySelector('.delete-sucess-modal').classList.toggle('active')">
+        Close
+    </button>
+</div>
+<div class="modal unblock-sucess-modal">
+    <h1>
+        Pateint Unblocked
+    </h1>
+    <button class="normal" onclick="document.querySelector('.unblock-sucess-modal').classList.toggle('active')">
+        Close
+    </button>
+</div>
+<div class="modal delete-fail-modal">
+    <h1>
+        Something Went Wrong
+    </h1>
+    <button class="normal" onclick="document.querySelector('.delete-fail-modal').classList.toggle('active')">
+        Close
+    </button>
+</div>
+<script src="/javascripts/patient-search.js"></script>

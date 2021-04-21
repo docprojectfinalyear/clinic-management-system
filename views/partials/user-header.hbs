@@ -1,0 +1,99 @@
+<header>
+  <div class="logo-section">
+    <a href="/">
+      <h1>
+        Doc-Talk
+      </h1>
+    </a>
+  </div>
+  <nav>
+    <a href="/">
+      Home
+    </a>
+    {{#if user}}
+    <a href="/appointments">
+      Appointments
+    </a>
+    <a href="/mydoctors">
+      My Doctors
+    </a>
+    <a href="/profile">
+      My Profile
+    </a>
+    {{else}}
+    <a href="/login">
+      Login
+      <a href="#contact">
+        Contact
+      </a>
+    </a>
+    {{/if}}
+    {{#if user}}
+    <a href="/logout">
+      Logout
+    </a>
+    <div>
+      <a href="/myprofile">
+        {{#isImage user._id "users"}}
+        <img class="img" src="/images/users/{{user._id}}.jpg" alt="{{userDetails.name}}">
+        {{else}}
+        {{#isNotOAuth user.auth}}
+        <img class="img" src="/images/icons/undraw_male_avatar_323b.svg">
+        {{else}}
+        <img class="img" src="{{user.profileImage}}" alt="">
+        {{/isNotOAuth}}
+        {{/isImage}}
+    </div>
+    </a>
+    {{/if}}
+  </nav>
+  <div class="menu-icon">
+    {{#if user}}
+    <div style="padding-top: 10px;">
+      <a href="/myprofile">
+        {{#isImage user._id "users"}}
+        <img class="img" src="/images/users/{{user._id}}.jpg" alt="{{userDetails.name}}">
+        {{else}}
+        {{#isNotOAuth user.auth}}
+        <img class="img" src="/images/icons/undraw_male_avatar_323b.svg">
+        {{else}}
+        <img class="img" src="{{user.profileImage}}" alt="">
+        {{/isNotOAuth}}
+        {{/isImage}}
+      </a>
+    </div>
+    {{/if}}
+    <div onclick="document.querySelector('.menu-user').classList.toggle('active');">
+      <i class="fas fa-bars"></i>
+    </div>
+  </div>
+</header>
+<div class="menu-user">
+  <span onclick="document.querySelector('.menu-user').classList.toggle('active');">
+    ×
+  </span>
+  <a href="/">
+    Home
+  </a>
+  <a href="/#contact" onclick="document.querySelector('.menu-user').classList.toggle('active');">
+    Contact
+  </a>
+  {{#if user}}
+  <a href="/appointments">
+    Appointments
+  </a>
+  <a href="/mydoctors">
+    My Doctors
+  </a>
+  <a href="/profile">
+    My Profile
+  </a>
+  <a href="/logout">
+    Logout
+  </a>
+  {{else}}
+  <a href="/login">
+    Login
+  </a>
+  {{/if}}
+</div>

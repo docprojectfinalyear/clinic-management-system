@@ -1,0 +1,39 @@
+<header>
+    <div class="logo-section">
+        <a href="/">
+            <h1>
+                Doc-Talk
+            </h1>
+        </a>
+    </div>
+    {{#if search}}
+    <div class="search">
+        <form action="/search" method="GET">
+            <div class="btn-grp">
+                <input type="search" name="q" class="first" id="search" value="{{query}}" placeholder="Search....">
+                <button type="submit" class="last" id="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </form>
+    </div>
+    {{/if}}
+    <div class="menu">
+        <div class="menu_humburger"></div>
+    </div>
+</header>
+<section class="sidebar">
+    <div class="profile-display">
+        {{#isImage doctorLogged._id "doctor"}}
+        <img src="/images/doctor/{{doctorLogged._id}}.jpg" alt="">
+        {{else}}
+        <img src="/images/icons/undraw_male_avatar_323b.svg">
+        {{/isImage}}
+        <p>{{doctorLogged.name}}</p>
+    </div>
+    <div class="nav-links">
+        <a href="/"><i class="fas fa-house-user"></i>&nbsp;&nbsp;Bookings</a>
+        <a href="/appointments"><i class="fas fa-calendar"></i>&nbsp;&nbsp;Appointments</a>
+        <a href="/patients"><i class="fas fa-user"></i>&nbsp;&nbsp;Patients</a>
+        <a href="/myprofile"><i class="fas fa-user"></i>&nbsp;&nbsp;My Profile</a>
+        <a href="/logout"><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Log Out</a>
+    </div>
+</section>

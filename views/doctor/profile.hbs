@@ -1,0 +1,86 @@
+<div class="user profile">
+    <div class="container">
+        <div class="card">
+            <div class="card-head">
+                <h1>
+                    My Profile
+                </h1>
+            </div>
+            <div class="card-body">
+                <div class="img-sec">
+                    {{#isImage doctorDetails._id "doctor"}}
+                    <img src="/images/doctor/{{doctorDetails._id}}.jpg" alt="">
+                    {{else}}
+                    <img src="/images/icons/undraw_male_avatar_323b.svg">
+                    {{/isImage}}
+                    <div class="div" onclick="window.location = '/image-upload/{{doctorDetails._id}}'">
+                        Edit
+                    </div>
+                </div>
+                <div class="details-feild">
+                    <p>
+                        Name:
+                        {{doctorDetails.name}}
+                    </p>
+                </div>
+                <div class="details-feild">
+                    <p>
+                        Username:
+                        {{doctorDetails.username}}
+                    </p>
+                </div>
+                <div class="details-feild">
+                    <p>
+                        Email:
+                        {{doctorDetails.email}}
+                    </p>
+                </div>
+                <div class="details-feild">
+                    <p>
+                        Gender: {{doctorDetails.gender}}
+                    </p>
+                </div>
+                <div class="details-feild">
+                    <p>
+                        Specialised: {{doctorDetails.specialised}}
+                    </p>
+                </div>
+                <div class="details-field">
+                    <p>
+                        Field: {{doctorDetails.field}}
+                    </p>
+                </div>
+                <div class="details-field">
+                    <p>
+                        Time Slot: {{doctorDetails.slotConfig.configSlotHours}} :
+                        {{doctorDetails.slotConfig.configSlotMinutes}}
+                    </p>
+                </div>
+                <div class="details-field">
+                    <p>
+                        Consulting Time:
+                        {{#each doctorDetails.slotConfig.timeArr}}
+                        {{this.startTime}} to {{this.endTime}}
+                        {{/each}}
+                    </p>
+                </div>
+                <div class="details-field">
+                    <p>
+                        Preaporatory Time : {{doctorDetails.slotConfig.configSlotPreparation}} Minutes
+                    </p>
+                </div>
+                <div class="btn-grp">
+                    <a href="/profile/edit"><button class="crop">Edit Details</button></a>
+                    <a href="/profile/change-password">
+                        <button class="crop" style="margin-left: 10px;">Change Password</button>
+                    </a>
+                </div>
+                <div class="btn-grp">
+                    <a href="/profile/username"><button class="crop">Edit Username</button></a>
+                    <a href="/profile/slot-config"><button class="crop" style="margin-left: 10px;">Edit
+                            TimeSlots</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
